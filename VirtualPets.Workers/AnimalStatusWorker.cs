@@ -24,7 +24,7 @@ namespace VirtualPets.Workers
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            int secondsInterval = 10;
+            int secondsInterval = 60;
             
             while (!stoppingToken.IsCancellationRequested)
             {
