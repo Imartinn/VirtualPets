@@ -45,7 +45,7 @@ namespace VirtualPets.Workers
                 foreach (var animalId in animals.Select(x => x.Id))
                 {
                     await _animalStatusService.LowerHappiness(animalId).ConfigureAwait(false);
-                    await _animalStatusService.LowerHunger(animalId).ConfigureAwait(false);
+                    await _animalStatusService.RaiseHunger(animalId).ConfigureAwait(false);
                 }
 
                 await Task.Delay(1000 * secondsInterval, stoppingToken);

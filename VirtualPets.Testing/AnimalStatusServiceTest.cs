@@ -21,10 +21,10 @@ namespace VirtualPets.Testing
             var newAnimalId = await adoptionService.AdoptAnimalAsync(newUserId, "Test dog", AnimalType.Dog);
 
             var initHunger = await animalStatusService.GetHungerAsync(newUserId, newAnimalId);
-            await animalStatusService.LowerHunger(newAnimalId);
+            await animalStatusService.RaiseHunger(newAnimalId);
             var afterHunger = await animalStatusService.GetHungerAsync(newUserId, newAnimalId);
 
-            Assert.True(afterHunger < initHunger);
+            Assert.True(afterHunger > initHunger);
         }
 
         [Fact]

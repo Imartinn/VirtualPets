@@ -9,7 +9,7 @@ namespace VirtualPets.Logic.Interfaces
         Task<int> GetHappinessAsync(Guid userId, Guid animalId);
         Task<int> GetHungerAsync(Guid userId, Guid animalId);
         Task<Animal> GetFullAnimalInfoAsync(Guid userId, Guid animalId);
-        Task LowerHunger(Guid animalId);
+        Task RaiseHunger(Guid animalId);
         Task LowerHappiness(Guid animalId);
     }
 }

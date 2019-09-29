@@ -14,7 +14,7 @@ namespace VirtualPets.Logic.Models
         private int _hunger;
         public int Hunger { 
             get { return _hunger; } 
-            private set { if (value == 0) IsAlive = false; _hunger = value; }
+            private set { if (value == MAX_HUNGER) IsAlive = false; _hunger = value; }
         }
         public int Happiness { get; private set; }
         public bool IsAlive { get; private set; }
@@ -40,13 +40,13 @@ namespace VirtualPets.Logic.Models
         {
             if (!IsAlive)
                 throw new InvalidOperationException("Dead animals don't eat");
-            if (Hunger == MAX_HUNGER)
+            if (Hunger == 0)
                 throw new InvalidOperationException("The animal can't eat more!");
 
-            if (Hunger + HUNGER_MOD > MAX_HUNGER)
-                Hunger = MAX_HUNGER;
+            if (Hunger - HUNGER_MOD < 0)
+                Hunger = 0;
             else
-                Hunger += HUNGER_MOD;
+                Hunger -= HUNGER_MOD;
         }
 
         public virtual void Stroke()
@@ -62,21 +62,21 @@ namespace VirtualPets.Logic.Models
                 Happiness += HAPPINESS_MOD;
         }
 
-        public virtual void LowerHunger()
+        public virtual void RaiseHunger()
         {
             if (!IsAlive)
-                throw new InvalidOperationException("Dead animals don't eat");
+                throw new InvalidOperationException("The animal is already dead");
 
-            if (Hunger - HUNGER_MOD < 0)
-                Hunger = 0;
+            if (Hunger + HUNGER_MOD > MAX_HUNGER)
+                Hunger = MAX_HUNGER;
             else
-                Hunger -= HUNGER_MOD;
+                Hunger += HUNGER_MOD;
         }
 
         public virtual void LowerHappiness()
         {
             if (!IsAlive)
-                throw new InvalidOperationException("You shouldn't touch a dead animal");
+                throw new InvalidOperationException("The animal is already dead");
 
             if (Happiness - HAPPINESS_MOD < 0)
                 Happiness = 0;

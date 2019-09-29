@@ -45,11 +45,11 @@ namespace VirtualPets.Logic.Services
         }
         
         #region internal 
-        public async Task LowerHunger(Guid animalId)
+        public async Task RaiseHunger(Guid animalId)
         {
             var animal = await _virtualPetsDbContext.Animals.FindAsync(animalId).ConfigureAwait(false);
 
-            animal.LowerHunger();
+            animal.RaiseHunger();
 
             await _virtualPetsDbContext.SaveChangesAsync();
         }

@@ -25,7 +25,7 @@ namespace VirtualPets.Testing
             await feedingService.FeedAnimalAsync(newUserId, newAnimalId);
             var afterHunger = await animalStatusService.GetHungerAsync(newUserId, newAnimalId);
 
-            Assert.True(afterHunger > initHunger);
+            Assert.True(afterHunger < initHunger);
         }
     }
 }
