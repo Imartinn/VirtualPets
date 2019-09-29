@@ -19,6 +19,9 @@ namespace VirtualPets.Api.Controllers
             _playingService = playingService;
         }
 
+        /// <summary>
+        /// Strokes the animal
+        /// </summary>
         [HttpPost]
         public async Task StrokeAsync([FromQuery]UserAnimalIdsDto data)
         {

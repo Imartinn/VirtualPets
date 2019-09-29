@@ -20,6 +20,9 @@ namespace VirtualPets.Api.Controllers
             _animalStatusService = animalStatusService;
         }
 
+        /// <summary>
+        /// Gets the current happiness of the animal
+        /// </summary>
         [HttpGet]
         [Route("GetHappiness")]
         public async Task<int> GetHappinessAsync([FromQuery]UserAnimalIdsDto data)
@@ -27,13 +30,19 @@ namespace VirtualPets.Api.Controllers
             return await _animalStatusService.GetHappinessAsync(data.UserId, data.AnimalId);
         }
 
+        /// <summary>
+        /// Gets the current hunger of the animal
+        /// </summary>
         [HttpGet]
         [Route("GetHunger")]
         public async Task<int> GetHungerAsync([FromQuery]UserAnimalIdsDto data)
         {
             return await _animalStatusService.GetHungerAsync(data.UserId, data.AnimalId);
         }
-        
+
+        /// <summary>
+        /// Gets full info of the animal
+        /// </summary>
         [HttpGet]
         [Route("GetFullInfo")]
         public async Task<Animal> GetFullAnimalInfoAsync([FromQuery]UserAnimalIdsDto data)

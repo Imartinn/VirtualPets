@@ -50,7 +50,7 @@ namespace VirtualPets.Logic.Services
                     newAnimal = new Parrot(userId, animalName);
                     break;
                 default:
-                    throw new InvalidOperationException("We don't sell that kind of animal");
+                    throw new ArgumentException("We don't sell that kind of animal");
             }
 
             await _virtualPetsDbContext.Animals.AddAsync(newAnimal).ConfigureAwait(false);

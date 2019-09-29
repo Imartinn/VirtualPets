@@ -19,6 +19,9 @@ namespace VirtualPets.Api.Controllers
             _feedingService = feedingService;
         }
 
+        /// <summary>
+        /// Feeds the animal
+        /// </summary>
         [HttpPost]
         public async Task FeedAsync([FromQuery]UserAnimalIdsDto data)
         {

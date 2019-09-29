@@ -25,18 +25,19 @@ namespace VirtualPets.Workers
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             int secondsInterval = 10;
-
-            using var scope = _serviceProvider.CreateScope();
-
-            var dbContext = scope.ServiceProvider.GetService<VirtualPetsDbContext>();
-            dbContext.Database.EnsureCreated();
-            dbContext.Database.Migrate();
-
-            var _animalStatusService = scope.ServiceProvider.GetRequiredService<IAnimalStatusService>();
-            var _adoptionService = scope.ServiceProvider.GetRequiredService<IAdoptionService>();
-
+            
             while (!stoppingToken.IsCancellationRequested)
             {
+                using var scope = _serviceProvider.CreateScope();
+
+                var dbContext = scope.ServiceProvider.GetService<VirtualPetsDbContext>();
+                dbContext.Database.EnsureCreated();
+                dbContext.Database.Migrate();
+
+                var _animalStatusService = scope.ServiceProvider.GetRequiredService<IAnimalStatusService>();
+                var _adoptionService = scope.ServiceProvider.GetRequiredService<IAdoptionService>();
+
+
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
                 var animals = await _adoptionService.GetAliveAnimalsAsync().ConfigureAwait(false);

@@ -22,13 +22,19 @@ namespace VirtualPets.Api.Controllers
             _logger = logger;
             _adoptionService = adoptionService;
         }
-        
+
+        /// <summary>
+        /// Gets the basic info for all existing animals.
+        /// </summary>
         [HttpGet]
         public async Task<IEnumerable<AnimalBasicInfo>> GetAnimalsBasicInfoAsync()
         {
             return await _adoptionService.GetAnimalsAsync();
         }
 
+        /// <summary>
+        /// Gets the available animal types.
+        /// </summary>
         [HttpGet]
         [Route("GetTypes")]
         public IEnumerable<string> GetAnimalTypes()
@@ -36,6 +42,9 @@ namespace VirtualPets.Api.Controllers
             return Enum.GetNames(typeof(AnimalType));
         }
 
+        /// <summary>
+        /// Creates and assigns the animal to the adopter
+        /// </summary>
         [HttpPost]
         public async Task<Guid> AdoptAnimalAsync([FromBody]AdoptAnimalDto data)
         {

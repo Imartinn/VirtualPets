@@ -21,18 +21,27 @@ namespace VirtualPets.Api.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Lists existing users
+        /// </summary>
         [HttpGet]
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
             return await _userService.GetUsersAsync();
         }
 
+        /// <summary>
+        /// Creates an user
+        /// </summary>
         [HttpPost]
         public async Task<Guid> CreateUserAsync([FromBody]string name)
         {
             return await _userService.CreateUserAsync(name);
         }
-        
+
+        /// <summary>
+        /// Deletes an user 
+        /// </summary>
         [HttpDelete]
         public async Task DeleteUserAsync([FromQuery]Guid userId)
         {
