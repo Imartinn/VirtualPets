@@ -27,7 +27,7 @@ namespace VirtualPets.Workers
             int secondsInterval = 10;
 
             using var scope = _serviceProvider.CreateScope();
-            
+
             var dbContext = scope.ServiceProvider.GetService<VirtualPetsDbContext>();
             dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();
@@ -39,7 +39,7 @@ namespace VirtualPets.Workers
             {
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
-                var animals = await _adoptionService.GetAnimalsAsync().ConfigureAwait(false);
+                var animals = await _adoptionService.GetAliveAnimalsAsync().ConfigureAwait(false);
 
                 foreach (var animalId in animals.Select(x => x.Id))
                 {

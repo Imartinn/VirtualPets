@@ -63,5 +63,9 @@ namespace VirtualPets.Logic.Services
         {
             return await _virtualPetsDbContext.Animals.Select(x => new AnimalBasicInfo(x.Id, x.Name)).ToArrayAsync().ConfigureAwait(false);
         }
+        public async Task<IEnumerable<AnimalBasicInfo>> GetAliveAnimalsAsync()
+        {
+            return await _virtualPetsDbContext.Animals.Where(x => x.IsAlive).Select(x => new AnimalBasicInfo(x.Id, x.Name)).ToArrayAsync().ConfigureAwait(false);
+        }
     }
 }

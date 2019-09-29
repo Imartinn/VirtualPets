@@ -11,5 +11,6 @@ namespace VirtualPets.Logic.Interfaces
         Task<Guid> AdoptAnimalAsync(Guid userId, string animalName, AnimalType animalType);
         Task<Guid> AdoptAnimalAsync(Guid userId, string animalName, string animalType);
         Task<IEnumerable<AnimalBasicInfo>> GetAnimalsAsync();
+        Task<IEnumerable<AnimalBasicInfo>> GetAliveAnimalsAsync();
     }
 }

@@ -26,7 +26,7 @@ namespace VirtualPets.Api
             services.AddControllers();
             services.AddDbContext<VirtualPetsDbContext>(options =>
             {
-                options.UseSqlite("Filename=VirtualPets.db")
+                options.UseSqlite("Filename=..\\VirtualPets.db")
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors();
             });

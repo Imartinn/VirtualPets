@@ -19,8 +19,8 @@ namespace VirtualPets.Workers
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddDbContext<VirtualPetsDbContext>(options =>
-                    { 
-                        options.UseSqlite("Filename=VirtualPets.db")
+                    {
+                        options.UseSqlite("Filename=..\\VirtualPets.db")
                         .EnableSensitiveDataLogging()
                         .EnableDetailedErrors();                        
                     });
