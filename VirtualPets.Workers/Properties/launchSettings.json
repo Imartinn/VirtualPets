@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "VirtualPets.Workers": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
